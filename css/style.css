@@ -804,6 +804,19 @@ h1, h2, h3, h4 {
     color: var(--color-accent);
 }
 
+.footer-credit {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.footer-credit a {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.footer-credit a:hover {
+    color: var(--color-accent);
+}
+
 /* ---- Floating WhatsApp ---- */
 .whatsapp-float {
     position: fixed;
