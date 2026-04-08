@@ -54,15 +54,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     animatedElements.forEach(el => observer.observe(el));
 
-    // --- reCAPTCHA validation before submit ---
+    // --- reCAPTCHA v3 on form submit ---
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
-            const response = grecaptcha.getResponse();
-            if (!response) {
-                e.preventDefault();
-                alert('Vul de reCAPTCHA in om te bevestigen dat je geen robot bent.');
-            }
+            e.preventDefault();
+            grecaptcha.ready(() => {
+                grecaptcha.execute('6LfBBawsAAAAANgP5elZIViGBFMlLY2BWZueMIHv', { action: 'contact' }).then((token) => {
+                    document.getElementById('recaptchaResponse').value = token;
+                    contactForm.submit();
+                });
+            });
         });
     }
 
