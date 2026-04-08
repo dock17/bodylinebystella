@@ -54,7 +54,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     animatedElements.forEach(el => observer.observe(el));
 
-    // Form is handled by Formsubmit.co — no JS needed
+    // --- reCAPTCHA validation before submit ---
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            const response = grecaptcha.getResponse();
+            if (!response) {
+                e.preventDefault();
+                alert('Vul de reCAPTCHA in om te bevestigen dat je geen robot bent.');
+            }
+        });
+    }
 
     // --- Active nav link on scroll ---
     const sections = document.querySelectorAll('section[id]');
