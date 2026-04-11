@@ -743,6 +743,40 @@ h1, h2, h3, h4 {
     resize: vertical;
 }
 
+/* ---- Review Form ---- */
+.review-form-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--color-white);
+    padding: 40px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+}
+
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 4px;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    font-size: 2rem;
+    color: var(--color-border);
+    cursor: pointer;
+    transition: color var(--transition);
+}
+
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: var(--color-accent);
+}
+
 /* ---- Footer ---- */
 .footer {
     background-color: var(--color-text);

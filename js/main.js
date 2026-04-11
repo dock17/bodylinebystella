@@ -55,18 +55,23 @@ document.addEventListener('DOMContentLoaded', () => {
     animatedElements.forEach(el => observer.observe(el));
 
     // --- reCAPTCHA v3 on form submit ---
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
+    const RECAPTCHA_KEY = '6LfBBawsAAAAANgP5elZIViGBFMlLY2BWZueMIHv';
+
+    function protectForm(form, action, tokenFieldId) {
+        if (!form) return;
+        form.addEventListener('submit', (e) => {
             e.preventDefault();
             grecaptcha.ready(() => {
-                grecaptcha.execute('6LfBBawsAAAAANgP5elZIViGBFMlLY2BWZueMIHv', { action: 'contact' }).then((token) => {
-                    document.getElementById('recaptchaResponse').value = token;
-                    contactForm.submit();
+                grecaptcha.execute(RECAPTCHA_KEY, { action }).then((token) => {
+                    document.getElementById(tokenFieldId).value = token;
+                    form.submit();
                 });
             });
         });
     }
+
+    protectForm(document.getElementById('contactForm'), 'contact', 'recaptchaResponse');
+    protectForm(document.getElementById('reviewForm'), 'review', 'recaptchaResponseReview');
 
     // --- Active nav link on scroll ---
     const sections = document.querySelectorAll('section[id]');

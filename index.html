@@ -34,12 +34,6 @@
         "openingHoursSpecification": [
             {
                 "@type": "OpeningHoursSpecification",
-                "dayOfWeek": "Monday",
-                "opens": "08:00",
-                "closes": "19:00"
-            },
-            {
-                "@type": "OpeningHoursSpecification",
                 "dayOfWeek": "Thursday",
                 "opens": "08:00",
                 "closes": "16:30"
@@ -72,6 +66,7 @@
                 <li><a href="#over" class="nav-link">Over Stella</a></li>
                 <li><a href="#diensten" class="nav-link">Diensten</a></li>
                 <li><a href="#prijzen" class="nav-link">Prijzen</a></li>
+                <li><a href="#recensie" class="nav-link">Recensie</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
                 <li><a href="#contact" class="nav-link btn-nav">Boek Nu</a></li>
             </ul>
@@ -220,6 +215,58 @@
         </div>
     </section>
 
+    <!-- Review Form Section -->
+    <section class="section" id="recensie">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Jouw Ervaring</span>
+                <h2 class="section-title">Laat een recensie achter</h2>
+                <p class="section-desc">Ben je tevreden over je behandeling? Deel je ervaring!</p>
+            </div>
+            <div class="review-form-wrapper">
+                <form class="contact-form" id="reviewForm" action="https://formsubmit.co/relax.bodyline@gmail.com" method="POST">
+                    <input type="hidden" name="_subject" value="Nieuwe recensie via website">
+                    <input type="hidden" name="_captcha" value="true">
+                    <input type="hidden" name="_next" value="https://bodylinebystella.com/bedankt-recensie.html">
+                    <input type="text" name="_honey" style="display:none">
+                    <input type="hidden" name="g-recaptcha-response" id="recaptchaResponseReview">
+
+                    <div class="form-group">
+                        <label for="review-name">Naam</label>
+                        <input type="text" id="review-name" name="naam" required placeholder="Je naam">
+                    </div>
+                    <div class="form-group">
+                        <label for="review-email">E-mail <span style="font-weight:300;color:var(--color-text-light);">(wordt niet getoond)</span></label>
+                        <input type="email" id="review-email" name="email" required placeholder="Je e-mailadres">
+                    </div>
+                    <div class="form-group">
+                        <label for="review-dienst">Dienst</label>
+                        <select id="review-dienst" name="dienst" required>
+                            <option value="">Kies een dienst</option>
+                            <option value="bodyline">Bodyline</option>
+                            <option value="relax">Relax</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Beoordeling</label>
+                        <div class="star-rating">
+                            <input type="radio" id="star5" name="sterren" value="5" required><label for="star5">★</label>
+                            <input type="radio" id="star4" name="sterren" value="4"><label for="star4">★</label>
+                            <input type="radio" id="star3" name="sterren" value="3"><label for="star3">★</label>
+                            <input type="radio" id="star2" name="sterren" value="2"><label for="star2">★</label>
+                            <input type="radio" id="star1" name="sterren" value="1"><label for="star1">★</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="review-text">Je recensie</label>
+                        <textarea id="review-text" name="recensie" rows="4" required placeholder="Vertel over je ervaring bij Stella..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Verstuur Recensie</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section class="section" id="contact">
         <div class="container">
@@ -255,7 +302,6 @@
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                             <div>
                                 <strong>Openingsuren</strong>
-                                <span>Maandag: 08:00 – 19:00</span>
                                 <span>Donderdag: 08:00 – 16:30</span>
                             </div>
                         </div>
