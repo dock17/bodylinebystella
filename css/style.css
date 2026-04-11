@@ -851,6 +851,11 @@ h1, h2, h3, h4 {
     color: var(--color-accent);
 }
 
+/* Hide reCAPTCHA v3 badge (allowed if credited in footer) */
+.grecaptcha-badge {
+    visibility: hidden !important;
+}
+
 /* ---- Floating WhatsApp ---- */
 .whatsapp-float {
     position: fixed;
