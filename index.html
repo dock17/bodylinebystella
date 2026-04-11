@@ -224,8 +224,10 @@
                 </div>
             </div>
 
-            <div class="review-form-wrapper" style="margin-top: 48px;">
-                <h3 style="font-family: var(--font-heading); font-size: 1.6rem; text-align: center; margin-bottom: 24px; color: var(--color-text);">Deel jouw ervaring</h3>
+            <div style="text-align: center; margin-top: 32px;">
+                <button class="btn btn-outline" id="toggleReviewForm">Laat een recensie achter</button>
+            </div>
+            <div class="review-form-wrapper" id="reviewFormWrapper" style="margin-top: 24px; display: none;">
                 <form class="contact-form" id="reviewForm" action="https://formsubmit.co/relax.bodyline@gmail.com" method="POST">
                     <input type="hidden" name="_subject" value="Nieuwe recensie via website">
                     <input type="hidden" name="_captcha" value="true">

@@ -73,6 +73,17 @@ document.addEventListener('DOMContentLoaded', () => {
     protectForm(document.getElementById('contactForm'), 'contact', 'recaptchaResponse');
     protectForm(document.getElementById('reviewForm'), 'review', 'recaptchaResponseReview');
 
+    // --- Toggle review form ---
+    const toggleBtn = document.getElementById('toggleReviewForm');
+    const reviewWrapper = document.getElementById('reviewFormWrapper');
+    if (toggleBtn && reviewWrapper) {
+        toggleBtn.addEventListener('click', () => {
+            const visible = reviewWrapper.style.display !== 'none';
+            reviewWrapper.style.display = visible ? 'none' : 'block';
+            toggleBtn.textContent = visible ? 'Laat een recensie achter' : 'Sluiten';
+        });
+    }
+
     // --- Testimonials carousel ---
     const cards = document.querySelectorAll('.carousel-track .testimonial-card');
     const dotsContainer = document.querySelector('.carousel-dots');
