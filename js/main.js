@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Scroll animations ---
     const animatedElements = document.querySelectorAll(
-        '.service-card, .pricing-card, .testimonial-card, .about-text, .about-image, .contact-info, .contact-form-wrapper'
+        '.service-card, .pricing-card, .about-text, .about-image, .contact-info, .contact-form-wrapper'
     );
 
     animatedElements.forEach(el => el.classList.add('fade-in'));
@@ -72,6 +72,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
     protectForm(document.getElementById('contactForm'), 'contact', 'recaptchaResponse');
     protectForm(document.getElementById('reviewForm'), 'review', 'recaptchaResponseReview');
+
+    // --- Testimonials carousel ---
+    const cards = document.querySelectorAll('.carousel-track .testimonial-card');
+    const dotsContainer = document.querySelector('.carousel-dots');
+    const prevBtn = document.querySelector('.carousel-prev');
+    const nextBtn = document.querySelector('.carousel-next');
+    let current = 0;
+
+    if (cards.length > 0 && dotsContainer) {
+        cards.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.classList.add('carousel-dot');
+            if (i === 0) dot.classList.add('active');
+            dot.setAttribute('aria-label', `Recensie ${i + 1}`);
+            dot.addEventListener('click', () => goTo(i));
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = dotsContainer.querySelectorAll('.carousel-dot');
+
+        function goTo(index) {
+            cards[current].classList.remove('active');
+            dots[current].classList.remove('active');
+            current = index;
+            cards[current].classList.add('active');
+            dots[current].classList.add('active');
+        }
+
+        prevBtn.addEventListener('click', () => goTo((current - 1 + cards.length) % cards.length));
+        nextBtn.addEventListener('click', () => goTo((current + 1) % cards.length));
+
+        // Auto-rotate every 8 seconds
+        setInterval(() => goTo((current + 1) % cards.length), 8000);
+    }
 
     // --- Active nav link on scroll ---
     const sections = document.querySelectorAll('section[id]');
