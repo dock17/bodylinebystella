@@ -114,8 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
         prevBtn.addEventListener('click', () => goTo((current - 1 + cards.length) % cards.length));
         nextBtn.addEventListener('click', () => goTo((current + 1) % cards.length));
 
-        // Auto-rotate every 8 seconds
-        setInterval(() => goTo((current + 1) % cards.length), 8000);
+        // Auto-rotate every 60 seconds
+        setInterval(() => goTo((current + 1) % cards.length), 60000);
     }
 
     // --- Active nav link on scroll ---
