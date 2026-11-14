@@ -886,19 +886,33 @@ h1, h2, h3, h4 {
 
 .footer-social {
     display: flex;
-    gap: 20px;
-    margin-top: 16px;
+    gap: 12px;
+    margin-top: 20px;
 }
 
 .footer-social a {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.85rem;
-    letter-spacing: 0.04em;
-    transition: color var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.75);
+    transition: color var(--transition), border-color var(--transition), background-color var(--transition);
 }
 
-.footer-social a:hover {
-    color: var(--color-accent);
+.footer-social a:hover,
+.footer-social a:focus-visible {
+    color: var(--color-text);
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+@media (max-width: 768px) {
+    .footer-social {
+        justify-content: flex-start;
+    }
 }
 
 .footer-bottom {
