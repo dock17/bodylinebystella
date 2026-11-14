@@ -111,9 +111,8 @@
     </script>
 
     <link rel="preload" as="image" href="images/hero.jpg" fetchpriority="high">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preload" href="fonts/montserrat-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -306,7 +305,6 @@
                     <input type="hidden" name="_captcha" value="true">
                     <input type="hidden" name="_next" value="https://bodylinebystella.com/bedankt-recensie.html">
                     <input type="text" name="_honey" style="display:none">
-                    <input type="hidden" name="g-recaptcha-response" id="recaptchaResponseReview">
 
                     <div class="form-group">
                         <label for="review-name">Naam</label>
@@ -416,7 +414,6 @@
                             <label for="message">Bericht</label>
                             <textarea id="message" name="message" rows="4" placeholder="Je bericht of gewenste datum..."></textarea>
                         </div>
-                        <input type="hidden" name="g-recaptcha-response" id="recaptchaResponse">
                         <p class="form-privacy" style="font-size:0.8rem;color:var(--color-text-light);margin-bottom:12px;">Je gegevens worden enkel gebruikt om je aanvraag te beantwoorden. Lees de <a href="privacy.html">privacyverklaring</a>.</p>
                         <button type="submit" class="btn btn-primary btn-full">Verstuur bericht</button>
                     </form>
@@ -472,7 +469,6 @@
                 </div>
                 <div class="footer-bottom-row footer-credit">
                     <span>Website door <a href="https://techmeld.eu/webdesign" target="_blank" rel="noopener">TechMeld.eu</a></span>
-                    <span>Beschermd door reCAPTCHA · <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy</a> &amp; <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Voorwaarden</a></span>
                 </div>
             </div>
         </div>
