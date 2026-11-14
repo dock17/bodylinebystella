@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bodylinebystella.com/sitemap.xml
