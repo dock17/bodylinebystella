@@ -54,19 +54,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
     animatedElements.forEach(el => observer.observe(el));
 
-    // --- reCAPTCHA v3 on form submit ---
+    // --- reCAPTCHA v3, loaded only when a form is used ---
     const RECAPTCHA_KEY = '6LfBBawsAAAAANgP5elZIViGBFMlLY2BWZueMIHv';
+    let recaptchaLoading = null;
+
+    function loadRecaptcha() {
+        if (!recaptchaLoading) {
+            recaptchaLoading = new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_KEY}`;
+                script.async = true;
+                script.onload = () => window.grecaptcha.ready(resolve);
+                script.onerror = reject;
+                document.head.appendChild(script);
+            });
+        }
+        return recaptchaLoading;
+    }
+
+    function getToken(action) {
+        return loadRecaptcha().then(() => window.grecaptcha.execute(RECAPTCHA_KEY, { action }));
+    }
 
     function protectForm(form, action, tokenFieldId) {
         if (!form) return;
+        // Start loading as soon as the visitor interacts with the form
+        form.addEventListener('focusin', () => { loadRecaptcha().catch(() => {}); }, { once: true });
+
+        let sending = false;
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            grecaptcha.ready(() => {
-                grecaptcha.execute(RECAPTCHA_KEY, { action }).then((token) => {
+            if (sending) return;
+            sending = true;
+            const send = () => form.submit();
+            // If reCAPTCHA is blocked (ad blocker, network), still send the form after 5 s:
+            // FormSubmit has its own spam protection, and a lost appointment request is worse.
+            const timeout = new Promise((resolve) => setTimeout(resolve, 5000));
+            Promise.race([
+                getToken(action).then((token) => {
                     document.getElementById(tokenFieldId).value = token;
-                    form.submit();
-                });
-            });
+                }),
+                timeout,
+            ]).catch(() => {}).finally(send);
         });
     }
 
